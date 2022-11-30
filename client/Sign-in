@@ -1,0 +1,45 @@
+<< Create DB user if none exists >>
+
+1) Write some code that executes only once when the page is loaded (refresh)
+
+useEffect
+[]
+
+2) Backend call that checks if profile exists for current logged in user
+
+Handler: if user exists  { return user profile in MongoDb }
+         else { create user profile in MongoDb }
+
+
+ if(verifyUser){
+            sendResponse(res, 200, user, "[SUCCESS] User exists. ")
+
+3) make call to BE route in useEffect - FETCH POST App.js
+   if (userSignedIn = false){return early}
+
+4) store the user's data after call to BE succeeds
+
+
+Add comments collection
+
+Add pin collection
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////
+
+<< Auth guards >>
+
+1) modification to the FE that prevents ppl from modifying spots that are not theirs
+
+conditional rendering: SPOT UPDATES: is the correct user signed in?
+                       ADD COMMENTS: is any user signed in?
+
+2) modification to the BE: adding guards to routes that need to be protected
+
+Middleware function
+NPM

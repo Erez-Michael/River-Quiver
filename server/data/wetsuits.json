@@ -1,0 +1,33 @@
+[
+
+{
+    "thickness":"Bikini!",
+    "imageSrc":"https://cdn.shopify.com/s/files/1/0360/4473/4523/products/WN202AX6_XCEL_BGY_FRT1_1024x1024_WEB_small.jpg",
+    "_id":10
+},
+    {
+    "thickness":"Boardshorts!",
+    "imageSrc":"https://cdn.shopify.com/s/files/1/0360/4473/4523/products/XCEL_INFINITI-BOARDSHORT_M1311INF_HSF_F_WEB_small.jpg",
+    "_id":11
+},
+    {
+    "thickness":"3/2",
+    "imageSrc":"https://cdn.shopify.com/s/files/1/0360/4473/4523/products/XCEL_MN32ZXC0_MN43ZXC0_SAP_F_web_1_small.jpg?v=1664933292",
+    "_id":32
+},
+    {
+    "thickness":"4/3",
+    "imageSrc":"https://cdn.shopify.com/s/files/1/0360/4473/4523/products/XCEL_MC32DRY1_MC43DRY1_BLK_FRT1_web_8ff25244-ecc5-4d51-bd7d-8f9a3cbbdd1b_small.jpg",
+    "_id":43
+},
+    {
+    "thickness":"5/4",
+    "imageSrc":"https://cdn.shopify.com/s/files/1/0360/4473/4523/products/MR54ZH20_XCEL_BLK_FRT1_1024x1024_WEB_small.jpg",
+    "_id":54
+},
+    {
+    "thickness":"6/5",
+    "imageSrc":"https://cdn.shopify.com/s/files/1/0360/4473/4523/products/XCEL_MC43DHN1_MC54DHN1_MC65DHN1_BLK_FRT1_web_6aadabbc-6440-4511-b960-8fc02f3acf7c_small.jpg",
+    "_id":65
+}
+]
