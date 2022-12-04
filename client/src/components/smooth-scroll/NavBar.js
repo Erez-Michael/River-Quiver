@@ -69,17 +69,14 @@ const NavBar = () => {
 const StyledContainer = styled.div`
   font-size: 16px;
   font-weight: 400;
-  
+
   & p {
     &:hover {
-      transform: scale(1.3);
+      transform: scale(1.5);
       color: #79a0cf;
     }
   }
-  /*.active {
-    color: #79a0cf;
-    transform: scale(1.3);
-  }*/
+  
   .header {
     background-color: #2c3d52;
     padding: 12px;

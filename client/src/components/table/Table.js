@@ -2,13 +2,15 @@ import React, { Fragment } from "react";
 import styled from "styled-components";
 import ReadOnlyRow from "./ReadOnlyRow";
 import useHandlers from "./useHandlers";
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 const Table = () => {
+   const { loginWithRedirect, isAuthenticated } = useAuth0();
   const {
     contacts,
     handleAddFormChange,
     handleAddFormSubmit,
-    handleEditFormSubmit,
     handleEditClick,
     handleDeleteClick,
   } = useHandlers();
@@ -65,9 +67,18 @@ const Table = () => {
               placeholder="Add equipment"
               onChange={handleAddFormChange}
             />
-            <div>
-              <button type="submit">Add</button>
-            </div>
+            {isAuthenticated && (
+              <div>
+                <button type="submit">Add</button>
+              </div>
+            )}
+            {!isAuthenticated && (
+              <div>
+                <button type="submit" style={{ filter: "opacity(0.4)" }}>
+                  Sign In !
+                </button>
+              </div>
+            )}
           </form>
         </WrapperThree>
       </WrapperTwo>

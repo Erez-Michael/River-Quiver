@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import data from "./mock-data.json";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useParams } from "react-router-dom";
 

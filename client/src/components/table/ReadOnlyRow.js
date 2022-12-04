@@ -1,33 +1,38 @@
 import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
 
-const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick }) => {
+
+const ReadOnlyRow = ({ contact, handleDeleteClick }) => {
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
   return (
     <Container>
+      <Wrapper>
+        <p>{contact.level}</p>
+        <p>{contact.flow}</p>
+        <p>{contact.rating}</p>
+        <p>{contact.equipment}</p>
+        {!isAuthenticated && (
+          <p
+            className="button"
+            style={{filter: "opacity(0.4)"} }
+            onClick={() => loginWithRedirect("http://localhost:3000/homepage")}
+          >
+            Sign In !
+          </p>
+        )}
 
-    <Wrapper>
-
-      <p>{contact.level}</p>
-      <p>{contact.flow}</p>
-      <p>{contact.rating}</p>
-      <p>{contact.equipment}</p>
-        {/* TODO
-        <button
-        type="button"
-        onClick={(event) => handleEditClick(event, contact)}
-        >
-        Edit
-      </button>*/} 
-
-        <p className="button"  onClick={() => handleDeleteClick(contact._id)}>
-          Delete
-        </p>
-    </Wrapper>
-      </Container>
+        {isAuthenticated && (
+          <p className="button" onClick={() => handleDeleteClick(contact._id)}>
+            Delete
+          </p>
+        )}
+      </Wrapper>
+    </Container>
   );
 };
 const Container = styled.div`
-max-height: 60%;
+  max-height: 60%;
 `;
 const Wrapper = styled.div`
   display: flex;

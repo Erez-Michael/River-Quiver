@@ -1,14 +1,14 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import ReactPaginate from "react-paginate";
 import { SpinnerDiamond } from "spinners-react";
 import UploadWidget from "./UploadWidget";
+
+
 const Gallery = () => {
   const [image, setImage] = useState([]);
   console.log(image);
 
-  // PAGINATION /////////////////////////////////
 
 
   useEffect(() => {
@@ -36,10 +36,10 @@ const Gallery = () => {
       </Spinner>
     );
   } else {
-          return (
-       <Container id="gallery">
-    <Widget>
-       <UploadWidget />
+    return (
+      <Container id="gallery">
+        <Widget>
+          <UploadWidget />
         </Widget>
         <Images>
           {image.map((image) => {
@@ -47,7 +47,7 @@ const Gallery = () => {
           })}
         </Images>
       </Container>
-    )
+    );
   }
 };
 const Container = styled.div`
