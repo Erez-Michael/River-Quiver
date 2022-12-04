@@ -1,40 +1,46 @@
-// packages
+// packages//////////////////////////////////////////////////////
 import * as React from "react";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { json, useNavigate } from "react-router-dom";
+import { DataContext } from "./contexts/DataContext";
 import styled from "styled-components";
 import { formatISO } from "date-fns";
 
-// components
+// components ////////////////////////////////////////////////////
 import Header from "./Header";
 import { FaWater } from "react-icons/fa";
-import { TbTemperature } from "react-icons/tb";
+import {  TbTemperature } from "react-icons/tb";
 import { GrTime } from "react-icons/gr";
 import WetsuitModalButton from "./wetsuit-modal/WetsuitModalButton";
+import TableModalButton from "./table/TableModalButton";
+
+
 import { useParams } from "react-router-dom";
-
-import { spots } from "./smooth-scroll/Map.js";
-
 const Spot = () => {
+  const { spots } = useContext(DataContext);
   const navigate = useNavigate();
 
   const [currentTime, setCurrentTime] = useState(new Date());
   const [timeSeries, setTimeSeries] = useState(null);
   const [temp, setTemp] = useState(null);
   const { spot_id } = useParams();
+
   const spot = spots.find((each) => {
     return each.id === spot_id;
   });
 
-  useEffect(() => {
-    let toDate = formatISO(currentTime).split("-");
-    toDate.pop();
-    toDate = toDate.join("-");
+  let toDate = formatISO(currentTime).split("-");
+  toDate.pop();
+  toDate = toDate.join("-");
 
-    const startTime = new Date(currentTime - 1 * 60000);
-    let fromDate = formatISO(startTime).split("-");
-    fromDate.pop();
-    fromDate = fromDate.join("-");
+  const startTime = new Date(currentTime - 1 * 60000);
+  let fromDate = formatISO(startTime).split("-");
+  fromDate.pop();
+  fromDate = fromDate.join("-");
+
+  useEffect(() => {
+    if (!spot) return;
+
 
     console.log({ toDate, fromDate });
     // Habitat 67 Water levels in real time ////////////////////////////
@@ -42,6 +48,10 @@ const Spot = () => {
       `https://api-iwls.dfo-mpo.gc.ca/api/v1/stations/${spot.id}/data?time-series-code=wlo&from=${fromDate}Z&to=${toDate}Z`
     )
       .then((res) => res.json())
+      .then((temp) => {
+        console.log(temp);
+        return temp;
+      })
       .then((parsedRes) => setTimeSeries(parsedRes));
 
     // Water temperature in real time //////////////////////////////////
@@ -49,15 +59,10 @@ const Spot = () => {
       `https://api-iwls.dfo-mpo.gc.ca/api/v1/stations/${spot.id}/data?time-series-code=wt1&from=${fromDate}Z&to=${toDate}Z`
     )
       .then((res) => res.json())
+      
       .then((parsedRes) => setTemp(parsedRes));
 
-    // Vague à Guy Water levels in real time ///////////////////////////
-    fetch(
-      `https://api-iwls.dfo-mpo.gc.ca/api/v1/stations/${spot.id}/data?time-series-code=wlo&from=${fromDate}Z&to=${toDate}Z`
-    )
-      .then((res) => res.json())
-      .then((parsedRes) => setTimeSeries(parsedRes));
-  }, [currentTime]);
+  }, [currentTime, spot?.id]);
 
   // update time every 1 minute /////////////////////////
   useEffect(() => {
@@ -71,16 +76,20 @@ const Spot = () => {
     <>
       <Header />
       <Navigation>
-        <div onClick={(e) => {
-          e.preventDefault();
-          navigate("/homepage");
-        }}>Home</div>
-        <div>Spots</div>
-          <Modal>
-            <WetsuitModalButton />
-          </Modal>
+        <div
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/homepage");
+          }}
+        >
+          Home
+        </div>
+        <WetsuitModalButton />
+        <TableModalButton/>
+        {/* <CommentsModalButton spot={spot} />*/}
       </Navigation>
-      <Title>{spot.name}</Title>
+      <Title>{spot ? spot.name : "Loading..."}</Title>
+    
       <Container>
         <Level>
           Level
@@ -93,7 +102,7 @@ const Spot = () => {
         <Flow>
           Flow
           <GrTime size={100} />
-          <p>7560 m³/s</p>
+          <p>7980 m³/s</p>
         </Flow>
         <Temperature>
           Temperature
@@ -122,7 +131,7 @@ const Title = styled.div`
 `;
 
 const Navigation = styled.div`
-margin-top: 240px;
+  margin-top: 240px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -143,18 +152,16 @@ margin-top: 240px;
     font-size: 18px;
     cursor: pointer;
   }
-    
 `;
 const Level = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: 0px 100px;
+  padding: 0px 90px;
 
   p {
     margin-top: 10px;
     font-size: 28px;
-    
   }
 `;
 
@@ -162,7 +169,7 @@ const Flow = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: 0px 100px;
+  padding: 0px 90px;
 
   p {
     margin-top: 10px;
@@ -174,7 +181,7 @@ const Temperature = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: 0px 100px;
+  padding: 0px 90px;
 
   p {
     margin-top: 10px;
@@ -183,7 +190,7 @@ const Temperature = styled.div`
   }
 `;
 
-const Modal = styled.div`
-`;
+
+
 
 export default Spot;

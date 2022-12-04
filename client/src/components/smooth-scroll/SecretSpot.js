@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 import SecretMap from "../smooth-scroll/SecretMap";
-import h67sunrise from "../../assets/h67sunrise.jpg";
+import h67sunrise from "../assets/h67sunrise.jpg";
 
 const SecretSpot = () => {
   const { loginWithRedirect, isAuthenticated } = useAuth0();

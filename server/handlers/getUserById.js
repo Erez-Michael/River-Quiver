@@ -8,24 +8,21 @@ const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
-
-//Gets pins of logged in user ////////////////////
-
-const getPins = async (req, res) => {
+//returns item based on ID
+const getUserById = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
-  const { email } = req.query;
 
   try {
     await client.connect();
+    const _id = Number(req.params._id);
 
-    const db = client.db("RiverQuiver");
-    const pins = await db.collection("pins").find({ email }).toArray();
+    const db = client.db("FinalProject");
 
-    if (pins.length === 0) {
-      sendResponse(res, 404, {}, "Pins have not yet been added by user");
-    } else {
-      sendResponse(res, 200, pins, "Pins exist in account");
-    }
+    const item = await db.collection("items").findOne({ _id });
+
+    return item
+      ? sendResponse(res, 200, item, "Successfully retrieved user!")
+      : sendResponse(res, 404, item, "Could not find specific user, check id!");
   } catch (err) {
     sendResponse(res, 400, err);
   } finally {
@@ -34,5 +31,5 @@ const getPins = async (req, res) => {
 };
 
 module.exports = {
-  getPins,
+  getUserById,
 };

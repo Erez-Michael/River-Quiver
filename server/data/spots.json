@@ -1,0 +1,22 @@
+[
+  {
+    "id": "5cebf1e03d0f4a073c4bbdd7",
+    "code": "15520",
+    "name": "Habitat 67",
+    "image": "h67",
+    "location": {
+      "lat": 45.501305,
+      "lng": -73.542253
+    }
+  },
+  {
+    "id": "5cebf1de3d0f4a073c4bb94a",
+    "code": "07755",
+    "name": "Vague à Guy",
+    "image": "neo",
+    "location": {
+      "lat": 45.41941929741901,
+      "lng": -73.60276712888145
+    }
+  }
+]

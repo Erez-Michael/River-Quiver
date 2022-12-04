@@ -1,11 +1,11 @@
 import { useState, useContext } from "react";
-import { WetsuitsContext } from "../contexts/WetsuitsContext";
+import { DataContext } from "../contexts/DataContext";
 import { SpinnerDotted } from "spinners-react";
 import styled from "styled-components";
 import Wetsuit from "./Wetsuit";
 
 const WetsuitDisplay = () => {
-  const { wetsuits } = useContext(WetsuitsContext);
+  const { wetsuits } = useContext(DataContext);
   //console.log(wetsuits);
   const [one, setOne] = useState([]);
   const [surf, setSurf] = useState(false);

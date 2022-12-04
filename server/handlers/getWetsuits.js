@@ -30,5 +30,5 @@ const getWetsuits = async (req, res) => {
 };
 
 module.exports = {
-  getWetsuits
+  getWetsuits,
 };

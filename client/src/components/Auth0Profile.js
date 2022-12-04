@@ -4,7 +4,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Auth0Profile = () => {
   const { user, isAuthenticated } = useAuth0();
-console.log(user);
   return (
     isAuthenticated &&
     user && (

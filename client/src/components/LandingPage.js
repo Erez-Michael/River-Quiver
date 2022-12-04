@@ -1,18 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import videoBg from "../assets/videoBg.mp4";
+//import videoBg2 from "./assets/videoBg2.mp4";
+import h67sunrise from "./assets/h67sunrise.jpg";
+
 
 const LandingPage = () => {
   const navigate = useNavigate();
 
-  // TODO: Sign in / Sign Up
-
   return (
-    <Container>
-      <Video>
-        <video src={videoBg} autoPlay loop muted />
-      </Video>
+    <Container style={{ backgroundImage: `url(${h67sunrise})` }}>
+      {/* <Video>
+       <video src={videoBg2} autoPlay loop muted />
+      </Video>*/}
       <Flex>
         <div>
           <Title>River Quiver</Title>

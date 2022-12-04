@@ -2,8 +2,8 @@ const { MongoClient } = require("mongodb");
 require("dotenv").config();
 const { MONGO_URI } = process.env;
 
-const wetsuits = require("./data/wetsuits.json");
-
+//const wetsuits = require("./data/wetsuits.json");
+const spots = require("./data/spots.json");
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -16,18 +16,16 @@ const batchImport = async() => {
         await client.connect();
         
         const db = await client.db("RiverQuiver");
-        console.log("database connected!");
 
-        console.log(`wetsuits: ${wetsuits.length} items to be inserted to database`);
-        const wetsuitInsert = await db.collection("wetsuits").insertMany(wetsuits);
+        //const wetsuitInsert = await db.collection("wetsuits").insertMany(wetsuits);
+        const spotsInsert = await db.collection("spots").insertMany(spots);
 
-        console.log(wetsuitInsert);
+        console.log(spotsInsert);
 
     }catch(err){
         console.log(err);
     } finally {
         client.close();
-        console.log("database disconnected!")
     }
 }
 

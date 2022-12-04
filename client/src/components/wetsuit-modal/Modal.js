@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDom from "react-dom";
 import styled from "styled-components";
-import WetsuitFetch from "./WetsuitDisplay";
 
 const Modal = ({ open, children, onClose }) => {
   if (!open) return null;

@@ -15,27 +15,28 @@ const NavBar = () => {
             to="home"
             spy={true}
             smooth={true}
-            duration={1000}
+            duration={800}
           >
-            HOME
+            <p> HOME</p>
           </Link>
           <Link
+            offset={-285}
             activeClass="active"
             to="map"
             spy={true}
             smooth={true}
-            duration={1000}
+            duration={800}
           >
-            DATA MAP
+            <p> DATA MAP</p>
           </Link>
           <Link
-            activeClass="active"
+            offset={-288}
             to="gallery"
             spy={true}
             smooth={true}
-            duration={1000}
+            duration={800}
           >
-            GALLERY
+            <p> GALLERY</p>
           </Link>
           {!isAuthenticated && (
             <Link
@@ -43,9 +44,9 @@ const NavBar = () => {
               to="secret-spot"
               spy={true}
               smooth={true}
-              duration={1000}
+              duration={800}
             >
-              SECRET SPOT
+              <p> SECRET SPOT</p>
             </Link>
           )}
           {isAuthenticated && (
@@ -54,9 +55,9 @@ const NavBar = () => {
               to="secret-map"
               spy={true}
               smooth={true}
-              duration={1000}
+              duration={800}
             >
-              SECRET SPOT
+              <p>SECRET SPOT</p>
             </Link>
           )}
         </div>
@@ -68,6 +69,17 @@ const NavBar = () => {
 const StyledContainer = styled.div`
   font-size: 16px;
   font-weight: 400;
+  
+  & p {
+    &:hover {
+      transform: scale(1.3);
+      color: #79a0cf;
+    }
+  }
+  /*.active {
+    color: #79a0cf;
+    transform: scale(1.3);
+  }*/
   .header {
     background-color: #2c3d52;
     padding: 12px;
@@ -78,15 +90,9 @@ const StyledContainer = styled.div`
     top: 27%;
     width: 100%;
     z-index: 900;
-    color: whitesmoke;
+    color: white;
     * {
       cursor: pointer;
-    }
-    .active {
-      transform: scale(1.4);
-      transition: ease-in 0.3s;
-      transition: ease-out 0.3s;
-      color: #c2c4cb;
     }
   }
 `;
