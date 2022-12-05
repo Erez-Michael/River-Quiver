@@ -66,8 +66,9 @@ const useHandlers = () => {
     axios
       .post("/createComments", newContact)
       .then((data) => {
-        console.log("data", data);
-        // setComments([data.data, ...comments]) // scope
+        // method #1
+        // setComments([data.data, ...comments]) // = scope
+        // method #2 ideal
         // reducer pattern
         setContacts((state) => {
           return [...state, data.data.data];
@@ -114,13 +115,17 @@ const useHandlers = () => {
   };
 
   const handleDeleteClick = (contactId) => {
-    const newContacts = [...contacts];
-
-    const index = contacts.findIndex((contact) => contact._id === contactId);
-
-    newContacts.splice(index, 1);
-
-    setContacts(newContacts);
+    return axios
+      .delete(`/deleteComment/${contactId}`)
+      .then((data) => {
+        console.log("data", data);
+        // setComments([data.data, ...comments]) // scope
+        // reducer pattern
+        setContacts((state) => state.filter((item) => item._id !== contactId));
+      })
+      .catch((error) => {
+        window.alert(error);
+      });
   };
 
   return {

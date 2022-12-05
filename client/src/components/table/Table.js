@@ -4,9 +4,8 @@ import ReadOnlyRow from "./ReadOnlyRow";
 import useHandlers from "./useHandlers";
 import { useAuth0 } from "@auth0/auth0-react";
 
-
 const Table = () => {
-   const { loginWithRedirect, isAuthenticated } = useAuth0();
+  const { loginWithPopup, isAuthenticated } = useAuth0();
   const {
     contacts,
     handleAddFormChange,
@@ -74,8 +73,8 @@ const Table = () => {
             )}
             {!isAuthenticated && (
               <div>
-                <button type="submit" style={{ filter: "opacity(0.4)" }}>
-                  Sign In !
+                <button type="submit" onClick={() => loginWithPopup()}>
+                  Sign In
                 </button>
               </div>
             )}
@@ -87,9 +86,7 @@ const Table = () => {
 };
 
 const Container = styled.div`
-  height: 100%;
   width: 70vw;
-
   border-radius: 5px;
   padding: 10px;
   -webkit-box-shadow: 0px 10px 13px -7px #000000,
@@ -110,7 +107,6 @@ const WrapperThree = styled.div`
   flex-direction: column;
   form {
     display: flex;
-    margin-right: 10px;
   }
   input {
     width: 13vw;
@@ -119,11 +115,11 @@ const WrapperThree = styled.div`
   }
 
   button {
-    margin-left: 50px;
+    margin-left: 40px;
     margin-top: 3px;
     display: flex;
     justify-content: center;
-    width: 5vw;
+    width: 9vw;
     text-align: center;
     border: #2c3d52 solid 1px;
     color: #2c3d52;
@@ -132,6 +128,7 @@ const WrapperThree = styled.div`
     font-size: 18px;
     border-radius: 4px;
     cursor: pointer;
+    font-weight: 600;
   }
 `;
 

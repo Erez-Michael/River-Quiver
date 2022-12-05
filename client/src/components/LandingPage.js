@@ -4,14 +4,14 @@ import { useNavigate } from "react-router-dom";
 //import videoBg2 from "./assets/videoBg2.mp4";
 import h67sunrise from "./assets/h67sunrise.jpg";
 
-
 const LandingPage = () => {
   const navigate = useNavigate();
 
   return (
-    <Container style={{ backgroundImage: `url(${h67sunrise})` }}>
-      {/* <Video>
-       <video src={videoBg2} autoPlay loop muted />
+    <Container
+      style={{ backgroundImage: `url(${h67sunrise})` }}>
+      {/*<Video>
+        <video src={videoBg2} autoPlay loop muted />
       </Video>*/}
       <Flex>
         <div>
@@ -46,7 +46,7 @@ const Container = styled.div`
   overflow: hidden;
 `;
 
-const Video = styled.div`
+/*const Video = styled.div`
   width: 100%;
   height: 100vh;
 
@@ -55,7 +55,7 @@ const Video = styled.div`
     height: 100%;
     object-fit: cover;
   }
-`;
+`;*/
 
 const Flex = styled.div`
   display: flex;

@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Auth0LoginButton = () => {
-  const { loginWithRedirect, isAuthenticated } = useAuth0();
+  const { loginWithPopup, isAuthenticated } = useAuth0();
 
   return (
     !isAuthenticated && (
       <Button
-        onClick={() => loginWithRedirect("http://localhost:3000/homepage")}
+        onClick={() => loginWithPopup()}
       >
         Sign In
       </Button>

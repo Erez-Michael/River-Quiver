@@ -4,8 +4,7 @@ import styled from "styled-components";
 import { useState, useContext, useRef, useCallback } from "react";
 import { DataContext } from "../contexts/DataContext";
 
-
-// GOOGLE MAPS IMPORTS//////////////////////////
+// GOOGLE MAPS IMPORTS >>>>>>>>>>>>>>>>>>>>>>>>>>>
 import {
   GoogleMap,
   useLoadScript,
@@ -13,7 +12,7 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 
-import  usePlacesAutocomplete, {
+import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
@@ -27,6 +26,9 @@ import {
 
 import "@reach/combobox/styles.css";
 import googleMapStyles from "../googleMapStyles";
+// GOOGLE MAPS IMPORTS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
 const libraries = ["places"];
 
 const options = {
@@ -50,11 +52,11 @@ const Map = () => {
   const [selected, setSelected] = useState({});
   const navigate = useNavigate();
 
+  const mapRef = useRef();
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
     libraries,
   });
-
 
   const onSelect = (item) => {
     setSelected(item);
@@ -65,10 +67,6 @@ const Map = () => {
     navigate(`/spot/${spot_id}`);
   };
 
-  ////////////////////////////////////////////////////////
- 
-
-  const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
   }, []);
@@ -77,7 +75,6 @@ const Map = () => {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(10);
   }, []);
-
 
   // COMPASS BUTTON - re-centers position  ////////////////////////
   const Locate = ({ panTo }) => {
@@ -132,7 +129,7 @@ const Map = () => {
         console.log("Error: ", error);
       }
     };
-    
+
     return (
       <div className="search">
         <Combobox onSelect={handleSelect}>
@@ -153,7 +150,7 @@ const Map = () => {
         </Combobox>
       </div>
     );
-  }
+  };
 
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
@@ -181,7 +178,6 @@ const Map = () => {
             onLoad={onMapLoad}
           >
             {spots.map((item) => {
-              console.log(item.image);
               return (
                 <Marker
                   key={item.name}
@@ -219,21 +215,21 @@ const Map = () => {
     </>
   );
 };
- 
+
 const Container = styled.div`
-  padding-bottom: 50px;
   background-color: #e2e5ed;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 50px;
   p {
     font-size: 30px;
   }
   img {
-    width: 300px;
+    width: 220px;
   }
 `;
-  const Header = styled.div`
+const Header = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 50px;
@@ -247,17 +243,13 @@ const Title = styled.div`
     color: #2c3d52;
   }
 `;
-const SpotSearch = styled.div`
-  
-`;
-const Locator = styled.div`
-`;
+const SpotSearch = styled.div``;
+const Locator = styled.div``;
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-
 
 const Button = styled.button`
   background-color: white;

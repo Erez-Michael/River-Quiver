@@ -22,8 +22,8 @@ const StyledModal = styled.div`
   top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 50px;
-  z-index: 1000;
+  padding: 80px;
+  z-index: 900;
   border-radius: 3px;
   animation-duration: 0.7s;
   animation-fill-mode: both;

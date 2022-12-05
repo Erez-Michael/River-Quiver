@@ -11,18 +11,7 @@ const Auth0Profile = () => {
         <Article>
           <UserName>{user.name}, surf's up!</UserName>
 
-          {user.picture && <Image src={user.picture} alt={user.name}/>}
-
-          {/*<ul>
-            {Object.keys(user).map((objKey, i) => {
-              return (
-                <li key={i}>
-                  {objKey}: {user[objKey]}
-                </li>
-              );
-              
-            })}
-          </ul>*/}
+          {user?.picture && <Image src={user.picture} alt={user.name} />}
         </Article>
       </>
     )
@@ -30,10 +19,10 @@ const Auth0Profile = () => {
 };
 
 const Article = styled.div`
-display: flex;
-flex-direction: row;
-font-size:16px;
-align-items:center;
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  align-items: center;
 `;
 
 const UserName = styled.div`
@@ -42,12 +31,11 @@ const UserName = styled.div`
   padding: 0px 20px;
   cursor: context-menu;
 `;
- 
+
 const Image = styled.img`
   border-radius: 1px;
   width: 50px;
   cursor: pointer;
 `;
-
 
 export default Auth0Profile;

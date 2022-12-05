@@ -47,8 +47,9 @@ const center = {
 
 /// Function START /////////////////////////////////////////////////
 const SecretMap = () => {
-  const [pins, setPins] = useState([]);
+  const { isAuthenticated } = useAuth0();
   const [selected, setSelected] = useState(null);
+  const [pins, setPins] = useState([]);
   const { user } = useAuth0();
 
   const { isLoaded, loadError } = useLoadScript({
@@ -57,7 +58,7 @@ const SecretMap = () => {
   });
 
   const onClickMap = (e) => {
-    console.log(e.eb.y);
+    //console.log(e.eb.y); // gives y position, e.eb.x gives x position
     axios
       .post("/createPins", {
         email: user.email,
@@ -75,12 +76,8 @@ const SecretMap = () => {
     axios
       .get("/getPins", { params: { email: user.email } })
       .then((response) => {
-        console.log("data >>>>>", response);
-        // if (data.status === 400 || data.status === 500) {
-        //   throw new Error(data.message);
-        // } else {
+        console.log("data >>>>>", response); // neat trick to clearly see a log in the console " >>>>>>>>>>>>>>>>"
         setPins(response.data.data);
-        // }
       })
       .catch((error) => {
         console.error(error);
@@ -184,67 +181,74 @@ const SecretMap = () => {
     });
   };
 
+  // Open Comment modal ////////////////////////////////////////
+
+ 
+
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
   return (
     <>
-      <Container id="secret-map">
-        <Header>
-          <Title>
-            <p>My Secret Spots{setPins} </p>
-          </Title>
-          <SpotSearch>
-            <Search panTo={panTo} />
-          </SpotSearch>
-          <Locator>
-            <Locate panTo={panTo} />
-          </Locator>
-        </Header>
-        <Wrapper>
-          <GoogleMap
-            id="map"
-            mapContainerStyle={containerStyle}
-            center={center}
-            zoom={10}
-            options={options}
-            onClick={onClickMap}
-            onLoad={onMapLoad}
-          >
-            {pins.map((pin, index) => (
-              <Marker
-                onClick={() => setSelected(pin)}
-                key={index}
-                position={{
-                  lat: Number(pin.lat),
-                  lng: Number(pin.lng),
-                }}
-                icon={{
-                  url: "https://res.cloudinary.com/dhcrarc6f/image/upload/v1669999840/55-551239_waves-waves-svg-free-hd-png-download_ttrowa.png",
-                  origin: new window.google.maps.Point(0, 0),
-                  anchor: new window.google.maps.Point(15, 15),
-                  scaledSize: new window.google.maps.Size(30, 30),
-                }}
-              />
-            ))}
-            {selected ? (
-              <InfoWindow
-                position={{ lat: selected.lat, lng: selected.lng }}
-                onCloseClick={() => {
-                  setSelected(null);
-                }}
-              >
-                <div>
-                  <h2>
-                    lat: {selected.lat}
-                    lng: {selected.lng}
-                    <Button onClick={onPinDelete}>Delete</Button>
-                  </h2>
-                </div>
-              </InfoWindow>
-            ) : null}
-          </GoogleMap>
-        </Wrapper>
-      </Container>
+      {isAuthenticated && (
+        <Container id="secret-map">
+          <Header>
+            <Title>
+              <p>My Secret Spots{setPins} </p>
+            </Title>
+            <SpotSearch>
+              <Search panTo={panTo} />
+            </SpotSearch>
+            <Locator>
+              <Locate panTo={panTo} />
+            </Locator>
+          </Header>
+          <Wrapper>
+            <GoogleMap
+              id="map"
+              mapContainerStyle={containerStyle}
+              center={center}
+              zoom={10}
+              options={options}
+              onClick={onClickMap}
+              onLoad={onMapLoad}
+            >
+              {pins.map((pin, index) => (
+                <Marker
+                  onClick={() => setSelected(pin)}
+                  key={index}
+                  position={{
+                    lat: Number(pin.lat),
+                    lng: Number(pin.lng),
+                  }}
+                  icon={{
+                    url: "https://res.cloudinary.com/dhcrarc6f/image/upload/v1669999840/55-551239_waves-waves-svg-free-hd-png-download_ttrowa.png",
+                    origin: new window.google.maps.Point(0, 0),
+                    anchor: new window.google.maps.Point(15, 15),
+                    scaledSize: new window.google.maps.Size(30, 30),
+                  }}
+                />
+              ))}
+              {selected ? (
+                <InfoWindow
+                  position={{ lat: selected.lat, lng: selected.lng }}
+                  onCloseClick={() => {
+                    setSelected(null);
+                  }}
+                >
+                  <div>
+                    <h2>
+                      lat: {selected.lat}
+                      lng: {selected.lng}
+                      <Button onClick={onPinDelete}>Delete</Button>
+                      <ButtonTwo>Comments</ButtonTwo>
+                    </h2>
+                  </div>
+                </InfoWindow>
+              ) : null}
+            </GoogleMap>
+          </Wrapper>
+        </Container>
+      )}
     </>
   );
 };
@@ -289,6 +293,16 @@ const Wrapper = styled.div`
 `;
 
 const Button = styled.button`
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  &:hover {
+    color: whitesmoke;
+    background-color: grey;
+  }
+`;
+  const ButtonTwo = styled.button`
   background-color: white;
   border: none;
   cursor: pointer;

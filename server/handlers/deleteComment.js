@@ -19,8 +19,6 @@ const deleteComment = async (req, res) => {
 
     const deleteComment = await db.collection("comments").deleteOne({ "_id" : ObjectId(_id) });
 
-    console.log("object", deleteComment);
-
     return deleteComment.deletedCount !== 0
       ? sendResponse(res, 200, { deleteComment }, "Comment deleted")
       : sendResponse(res, 400, "[ ERROR ] Not able to delete comment");

@@ -1,15 +1,11 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { SpinnerDiamond } from "spinners-react";
+import { SpinnerDotted } from "spinners-react";
 import UploadWidget from "./UploadWidget";
-
 
 const Gallery = () => {
   const [image, setImage] = useState([]);
-  console.log(image);
-
-
 
   useEffect(() => {
     // Gets all IMAGES from CLOUDINARY FOLDER ////////
@@ -26,13 +22,16 @@ const Gallery = () => {
         console.error(error);
       });
   }, []);
-
-   
-
+// Loading state ////////////////////////////////////
   if (!image) {
     return (
       <Spinner>
-        <SpinnerDiamond size={90} thickness={97} speed={102} color="rgba(172, 139, 57, 1)" secondaryColor="rgba(57, 131, 172, 1)" />
+        <SpinnerDotted
+          size={90}
+          thickness={87}
+          speed={159}
+          color="rgba(44, 61, 82, 1)"
+        />
       </Spinner>
     );
   } else {
@@ -50,44 +49,44 @@ const Gallery = () => {
     );
   }
 };
+
+const Spinner = styled.span`
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 450px);
+`;
+
 const Container = styled.div`
   background-color: #e2e5ed;
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 69vh;
+  height: 100vh;
 `;
 
 const Images = styled.div`
-margin-top: 50px;
+  margin-top: 50px;
   display: flex;
   justify-content: center;
   display: grid;
   grid-template-columns: repeat(4, 170px);
   grid-template-rows: repeat(4, 170px);
- 
 
   img {
     width: 160px;
-    height: 150px;
+    height: 140px;
   }
-  img:hover{
+  img:hover {
     transform: scale(1.2);
     transition: ease-in-out(0.3);
   }
 `;
 
 const Widget = styled.div`
-display: flex;
-justify-content: center;
-margin-top: 50px;
-
-`;
-const Spinner = styled.span`
-  font-size: 3rem;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: calc(100vh - 150px);
+  margin-top: 50px;
 `;
 export default Gallery;

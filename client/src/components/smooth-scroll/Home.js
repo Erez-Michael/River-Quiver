@@ -10,11 +10,11 @@ const Home = () => {
         <Text>
           <div>
             <FiDroplet size={30} color={"#2C3D52"} fill={"#5C6367"} />
-            <p>Global River Surf Spot Databse</p>
+            <p>Real-Time Hydrometric Data</p>
           </div>
           <div>
             <FiDroplet size={30} color={"#2C3D52"} fill={"#5C6367"} />
-            <p>Real-Time Hydrometric Data</p>
+            <p>River Surf Spot Database</p>
           </div>
           <div>
             <FiDroplet size={30} color={"#2C3D52"} fill={"#5C6367"} />
@@ -34,7 +34,7 @@ const Container = styled.div`
   display: grid;
   place-items: center;
   height: 100vh;
-  animation: fadeInAnimation ease 6s;
+  animation: fadeInAnimation ease 4s;
   animation-iteration-count: 1;
   animation-fill-mode: backwards;
   z-index: -1;

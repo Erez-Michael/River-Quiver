@@ -17,11 +17,11 @@ const batchImport = async() => {
         
         const db = await client.db("RiverQuiver");
 
+        // Un-commment to push to MongoDb
         //const wetsuitInsert = await db.collection("wetsuits").insertMany(wetsuits);
-        const spotsInsert = await db.collection("spots").insertMany(spots);
+        //const spotsInsert = await db.collection("spots").insertMany(spots);
 
-        console.log(spotsInsert);
-
+        console.log(spotsInsert)
     }catch(err){
         console.log(err);
     } finally {

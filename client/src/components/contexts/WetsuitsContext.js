@@ -6,7 +6,7 @@ export const WetsuitsContext = createContext();
 // CONTEXT to provide all product metadata (item  & company information)
 export const DataProvider = ({ children }) => {
   const [wetsuits, setWetsuits] = useState(null);
- 
+
   useEffect(() => {
     // Gets all WETSUITS from database ///////////////////////////////////
     fetch("/wetsuits")
@@ -22,10 +22,9 @@ export const DataProvider = ({ children }) => {
         console.error(error);
       });
   }, []);
-//console.log(wetsuits)
-      return (
-        <WetsuitsContext.Provider value={{wetsuits}}>
-            {children}
-        </WetsuitsContext.Provider>
-    )
-}
+  return (
+    <WetsuitsContext.Provider value={{ wetsuits }}>
+      {children}
+    </WetsuitsContext.Provider>
+  );
+};

@@ -17,14 +17,10 @@ const getAllImages = async (req, res) => {
     const images = await cloudinary.v2.api.resources({
       type: "upload",
     });
-      console.log(images);
-      sendResponse(res, 200, images.resources, "Images exist in account");
-      
-  }
-  catch (error) {
+    sendResponse(res, 200, images.resources, "Images exist in account");
+  } catch (error) {
     console.error(error);
-    }
-    
+  }
 };
 
 module.exports = {

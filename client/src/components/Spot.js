@@ -41,15 +41,12 @@ const Spot = () => {
   useEffect(() => {
     if (!spot) return;
 
-
-    console.log({ toDate, fromDate });
-    // Habitat 67 Water levels in real time ////////////////////////////
+    //  Water levels in real based on spot.id time ////////////////////////////
     fetch(
       `https://api-iwls.dfo-mpo.gc.ca/api/v1/stations/${spot.id}/data?time-series-code=wlo&from=${fromDate}Z&to=${toDate}Z`
     )
       .then((res) => res.json())
       .then((temp) => {
-        console.log(temp);
         return temp;
       })
       .then((parsedRes) => setTimeSeries(parsedRes));
@@ -86,7 +83,7 @@ const Spot = () => {
         </div>
         <WetsuitModalButton />
         <TableModalButton/>
-        {/* <CommentsModalButton spot={spot} />*/}
+       
       </Navigation>
       <Title>{spot ? spot.name : "Loading..."}</Title>
     

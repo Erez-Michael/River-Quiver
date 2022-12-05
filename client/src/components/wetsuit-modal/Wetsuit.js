@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const Wetsuit = ({ item, one, index }) => {
-    //console.log(item);
     return ( 
         <>
             {one[index] &&

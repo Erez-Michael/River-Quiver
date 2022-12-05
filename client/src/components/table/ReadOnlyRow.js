@@ -1,31 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
 
-
 const ReadOnlyRow = ({ contact, handleDeleteClick }) => {
-  const { loginWithRedirect, isAuthenticated } = useAuth0();
+  const { loginWithPopup, isAuthenticated } = useAuth0();
+
+  const [deleting, setDeleting] = useState(false);
+
+  const onDelete = () => {
+    setDeleting(true);
+    handleDeleteClick(contact._id).finally(() => {
+      setDeleting(false);
+    });
+  };
+
   return (
     <Container>
       <Wrapper>
-        <p>{contact.level}</p>
-        <p>{contact.flow}</p>
-        <p>{contact.rating}</p>
-        <p>{contact.equipment}</p>
         {!isAuthenticated && (
-          <p
-            className="button"
-            style={{filter: "opacity(0.4)"} }
-            onClick={() => loginWithRedirect("http://localhost:3000/homepage")}
-          >
-            Sign In !
-          </p>
+          <>
+            <p
+              className="button"
+              style={{ filter: "opacity(0.4)" }}
+              onClick={() => loginWithPopup()}
+            >
+              Sign In to view comments
+            </p>
+          </>
         )}
 
         {isAuthenticated && (
-          <p className="button" onClick={() => handleDeleteClick(contact._id)}>
-            Delete
-          </p>
+          <>
+            <p>{contact.level}</p>
+            <p>{contact.flow}</p>
+            <p>{contact.rating}</p>
+            <p>{contact.equipment}</p>
+            <p className="button" onClick={onDelete}>
+              {deleting ? "Deleteing..." : "Delete"}
+            </p>
+          </>
         )}
       </Wrapper>
     </Container>
@@ -33,6 +46,7 @@ const ReadOnlyRow = ({ contact, handleDeleteClick }) => {
 };
 const Container = styled.div`
   max-height: 60%;
+  z-index: 900;
 `;
 const Wrapper = styled.div`
   display: flex;
@@ -49,6 +63,7 @@ const Wrapper = styled.div`
   }
   .button {
     width: 50vw;
+    max-height: 18px;
     text-align: center;
     border: #2c3d52 solid 1px;
     color: #2c3d52;

@@ -1,17 +1,15 @@
 import { useState, useContext } from "react";
 import { DataContext } from "../contexts/DataContext";
-import { SpinnerDotted } from "spinners-react";
 import styled from "styled-components";
+
+import { SpinnerDotted } from "spinners-react";
+
 import Wetsuit from "./Wetsuit";
 
 const WetsuitDisplay = () => {
   const { wetsuits } = useContext(DataContext);
-  //console.log(wetsuits);
   const [one, setOne] = useState([]);
   const [surf, setSurf] = useState(false);
-
-  console.log(surf);
-  console.log(one);
 
   if (!wetsuits) {
     return (
@@ -105,11 +103,13 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
   height: 100%;
+  width: 70vw;
   border-radius: 5px;
   -webkit-box-shadow: 0px 10px 13px -7px #000000,
     0px 18px 24px 10px rgba(54, 72, 83, 0.59);
   box-shadow: 0px 10px 13px -7px #000000,
     0px 18px 24px 10px rgba(54, 72, 83, 0.59);
+  z-index: 900;
 `;
 const Container = styled.div`
   display: flex;
@@ -141,7 +141,7 @@ const WetsuitSlider = styled.div`
     height: 80px;
     transition: ease-in 0.6s;
     transition: ease-out 0.5s;
-   opacity: 0.7;
+    opacity: 0.7;
   }
   div:hover {
     transform: scale(1.1);
@@ -160,12 +160,12 @@ const Wetsuits = styled.div`
 `;
 
 const Instructions = styled.div`
-margin-top: 10px;
-margin-left: -430px;
-p{
-  font-size: 20px;
-  font-weight: 600;
-}
+  margin-top: 10px;
+  margin-left: -430px;
+  p {
+    font-size: 20px;
+    font-weight: 600;
+  }
 `;
 
 export default WetsuitDisplay;

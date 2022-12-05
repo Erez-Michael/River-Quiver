@@ -5,18 +5,18 @@ import SecretMap from "../smooth-scroll/SecretMap";
 import h67sunrise from "../assets/h67sunrise.jpg";
 
 const SecretSpot = () => {
-  const { loginWithRedirect, isAuthenticated } = useAuth0();
+  const { loginWithPopup, isAuthenticated } = useAuth0();
+
 
   return (
     <>
+    
       {!isAuthenticated && (
         <Wrapper
           id="secret-spot"
           style={{ backgroundImage: `url(${h67sunrise})` }}
         >
-          <Button
-            onClick={() => loginWithRedirect("http://localhost:3000/homepage")}
-          >
+          <Button onClick={() => loginWithPopup()}>
             <p>Log in to manage your spots</p>
           </Button>
         </Wrapper>

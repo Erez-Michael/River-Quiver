@@ -8,7 +8,6 @@ const UploadWidget = () => {
 
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
-    console.log(cloudinaryRef.current);
     widgetRef.current = cloudinaryRef.current.createUploadWidget(
       {
         cloudName: "dhcrarc6f",
@@ -18,16 +17,14 @@ const UploadWidget = () => {
         console.log(result);
       }
     );
-  }, [])
-  
-  const {  loginWithRedirect ,isAuthenticated } = useAuth0();
+  }, []);
+
+  const { loginWithPopup, isAuthenticated } = useAuth0();
 
   return (
     <>
       {!isAuthenticated && (
-        <Button
-          onClick={() => loginWithRedirect("http://localhost:3000/homepage")}
-        >
+        <Button onClick={() => loginWithPopup()}>
           Log In to Upload Image
         </Button>
       )}
@@ -38,7 +35,7 @@ const UploadWidget = () => {
       )}
     </>
   );
-}
+};
 const Button = styled.button`
   border: none;
   color: whitesmoke;
