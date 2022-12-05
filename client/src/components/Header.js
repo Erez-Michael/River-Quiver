@@ -67,6 +67,7 @@ const Title = styled.button`
   border: none;
   background-color: #e2e5ed;
   color: #2c3d52;
+  padding-bottom: 10px;
   span {
     margin-bottom: 40px;
     font-style: italic;

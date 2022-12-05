@@ -103,7 +103,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
   height: 100%;
-  width: 70vw;
+  width: 60vw;
   border-radius: 5px;
   -webkit-box-shadow: 0px 10px 13px -7px #000000,
     0px 18px 24px 10px rgba(54, 72, 83, 0.59);

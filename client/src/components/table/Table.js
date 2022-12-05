@@ -86,7 +86,7 @@ const Table = () => {
 };
 
 const Container = styled.div`
-  width: 70vw;
+  width: 60vw;
   border-radius: 5px;
   padding: 10px;
   -webkit-box-shadow: 0px 10px 13px -7px #000000,
@@ -109,7 +109,7 @@ const WrapperThree = styled.div`
     display: flex;
   }
   input {
-    width: 13vw;
+    width: 12vw;
     text-align: left;
     font-size: 18px;
   }
@@ -119,7 +119,7 @@ const WrapperThree = styled.div`
     margin-top: 3px;
     display: flex;
     justify-content: center;
-    width: 9vw;
+    width: 6vw;
     text-align: center;
     border: #2c3d52 solid 1px;
     color: #2c3d52;

@@ -37,6 +37,7 @@ const Container = styled.div`
   animation: fadeInAnimation ease 4s;
   animation-iteration-count: 1;
   animation-fill-mode: backwards;
+  margin-bottom: -40px;
   z-index: -1;
 
   @keyframes fadeInAnimation {
