@@ -2,10 +2,22 @@
 <a href="https://github.com/Erez-Michael/River-Quiver" target="_blank" rel="noreferrer"><img width="360px" height='80px'src="https://res.cloudinary.com/dhcrarc6f/image/upload/v1676682152/RQ_jhwt6s.png"/></a>
 </p>
 
-Welcome to our app for travel enthusiasts built with React! With this tool, you can easily plan and organize your trip by adding travel, restaurant, hotel, and activity cards to your itinerary. You can customize your itinerary by modifying costs, cards, and adding notes. When your trip is finished, you can save it to your list of past trips for future reference.
+---
+
+After 3 months of hard work , this is my final project for the [Concordia Bootcamp](https://concordiabootcamps.ca/courses/web-development-full-time/) completed from A to Z in 12 days...and nights! 
+
+***River Quiver*** provides ***river surfers*** with the following:
+
+>**Real-Time Hydrometric Data**
+>>**Picture and video uploads**
+>>>**River Surf Spot Database**
+>>>>**User authentication**
+>>>>>**Interactive Maps**
+
+
 
 # Getting Started
-Get the project up and running on your ***local server*** for development and testing purposes.
+Get the project up and running on your ***local server*** `"proxy": "http://localhost:8000"` for development and testing purposes.
 
 # Prerequisites
 
@@ -21,16 +33,16 @@ To install and use my React app, follow these steps:
 ### The Frontend
 
 >1. Open a terminal in VS Code
->2. Type ‘cd client’
->3. Type ‘yarn install’
->4. Use ‘yarn start’ to start the frontend dev environment.
+>2. Type ***cd client***
+>3. Type ***yarn install***
+>4. Use ***yarn start*** to start the frontend dev environment.
 
 ### The Backend
 
 >1. Open another terminal in VS Code
->2. Type ‘cd server’
->3. Type ‘yarn install’
->4. Use ‘yarn start’ to start the backend dev environment.
+>2. Type ***cd server***
+>3. Type ***yarn install***
+>4. Use ***yarn start*** to start the backend dev environment.
 
 # Contributing
 
