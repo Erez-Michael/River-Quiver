@@ -147,7 +147,12 @@ const Navigation = styled.div`
     color: whitesmoke;
     text-decoration: none;
     font-size: 18px;
+    font-weight:  400;
     cursor: pointer;
+    &:hover {
+      transform: scale(1.2);
+      color: #79a0cf;
+    }
   }
 `;
 const Level = styled.div`
